@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>Base64</title>
+</head>
+<body>
+<input id="file" type="file"/>
+
+<script type="text/javascript" src="../js/Base64.min.js"></script>
+<script type="text/javascript">
+    document.getElementById('file').addEventListener('change', function () {
+        Base64.fromFileInPiece(this.files[0], function (base64) {
+            console.log(base64);
+            var img = new Image;
+            img.src = base64;
+            img.onload = function () {
+                document.getElementsByTagName('body')[0].appendChild(img);
+            }
+        });
+    }, false);
+
+    Base64.fromUrl('http://test.res.easy-hi.cn/yoga-res/admin/statics/img/login-logo-new.png', function (base64) {
+        console.log(base64);
+    });
+</script>
+</body>
+</html>
